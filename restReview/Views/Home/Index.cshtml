@@ -1,0 +1,25 @@
+﻿@model IPagedList<RestaurantListViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+<form method="get" action="@Url.Action("Index")"
+      data-otf-ajax="true" data-otf-target="#restaurantList">
+
+    <input class="form-control" type="search" name="searchTerm" data-otf-autocomplete="@Url.Action("Autocomplete")" />
+    <input class="form-control" type="submit" value="Search By Name" />
+</form>
+
+@*@using (Ajax.BeginForm(
+        new AjaxOptions
+        {
+            HttpMethod = "get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "restaurantList"
+        }))
+    {
+        <input class="form-control" type="search" name="searchTerm" />
+        <input class="form-control" type="submit" value="Search By Name" />
+    }*@
+
+@Html.Partial("_Restaurants", Model)
