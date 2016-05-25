@@ -6,49 +6,43 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using restReview;
 using restReview.Controllers;
+using restReview.Tests.Fakes;
+using restReview.Services;
+using restReview.Data;
 
 namespace restReview.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
-        public void Index()
+        private FakeMessageBoardRepository _repo;
+        private HomeController _ctrl;
+
+        [TestInitialize]
+        public void Init()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            _repo = new FakeMessageBoardRepository();
+            _ctrl = new HomeController(new MockMailService(), _repo);
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+        }
 
-            // Assert
+        [TestMethod]
+        public void IndexCanRender()
+        {
+            var result = _ctrl.Index();
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void About()
+        public void IndexHasData()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            var result = _ctrl.Index() as ViewResult;
+            var topics = result.Model as IEnumerable<Topic>;
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
+            Assert.IsNotNull(result.Model);
+            Assert.IsNotNull(topics);
+            Assert.IsTrue(topics.Count() > 0);
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
         }
     }
 }

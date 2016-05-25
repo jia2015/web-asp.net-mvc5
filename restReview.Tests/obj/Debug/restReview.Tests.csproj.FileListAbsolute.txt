@@ -50,3 +50,9 @@ C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\
 C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\PagedList.xml
 C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Microsoft.Owin.Security.Google.dll
 C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Microsoft.Owin.Security.Google.xml
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Ninject.Web.Common.dll
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Ninject.dll
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\WebActivatorEx.dll
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\WebApiContrib.IoC.Ninject.dll
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Ninject.Web.Common.xml
+C:\Users\mrli\Documents\Visual Studio 2013\Projects\restReview\restReview.Tests\bin\Debug\Ninject.xml

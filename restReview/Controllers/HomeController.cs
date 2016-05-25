@@ -5,13 +5,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using restReview.Services;
+using restReview.Data;
 
 namespace restReview.Controllers
 {
     public class HomeController : Controller
     {
+        private IMailService _mail;
+        private IMessageBoardRepository _repo;
+
         restReviewDbContext db = new restReviewDbContext();
 
+        public HomeController(IMailService mail, IMessageBoardRepository repo)
+        {
+            _mail = mail;
+            _repo = repo;
+        }
+      
         public ActionResult Autocomplete(string term)
         {
             var model =
@@ -66,12 +77,41 @@ namespace restReview.Controllers
             return View(model);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactModel model)
+        {
+            var msg = string.Format("Comment From: {1}{0}Email:{2}{0}Website: {3}{0}Comment:{4}",
+                            Environment.NewLine,
+                            model.Name,
+                            model.Email,
+                            model.Website,
+                            model.Comment);
+
+            if (_mail.SendMail("noreply@yourdomain.com",
+                    "foo@yourdomain.com",
+                    "Website Contact",
+                    msg))
+            {
+                ViewBag.MailSent = true;
+            }
+            return View();
+        }
+
+        public ActionResult MessageBoard()
+        {
+            var topics = _repo.GetTopics()
+                        .OrderByDescending(t => t.Created)
+                        .Take(25)
+                        .ToList();
+            return View(topics);
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<restReview.Data.Topic>
+@{
+    ViewBag.Title = "MessageBoard";
+    ViewBag.InitModule = "homeIndex";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Scripts {
+    <script src="~/Scripts/js/home-index.js"></script>
+}
+
+<div ng-view></div>
+
